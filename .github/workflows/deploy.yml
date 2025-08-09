@@ -22,23 +22,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build amCharts 5 examples
-        run: |
-          npm run build
-          npm run build:examples || echo "No build:examples script, examples built in main"
+      - name: Build the project
+        run: npm run build
 
-      - name: List dist folder contents for debugging
+      - name: List build folder contents for debugging
         run: |
-          echo "Listing dist folder contents:"
-          ls -R ./dist || echo "dist folder not found"
-
-      - name: List examples folder contents for debugging
-        run: |
-          echo "Listing dist/examples folder contents:"
-          ls -R ./dist/examples || echo "dist/examples folder not found"
+          echo "Contents of build folder:"
+          ls -R ./build || echo "build folder not found"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/examples
+          publish_dir: ./build
