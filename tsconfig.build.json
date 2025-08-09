@@ -1,8 +1,0 @@
-{
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "tsBuildInfoFile": "./tmp/tsc/.tsbuildinfo",
-        "composite": true,
-        "incremental": true,
-    }
-}
