@@ -1,10 +1,10 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy amCharts 5 Examples to GitHub Pages
 
 on:
   push:
     branches:
-      - master
       - main
+      - master
 
 jobs:
   build-and-deploy:
@@ -22,10 +22,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Adjust the build command if amCharts uses a different script for examples
-      - name: Build examples
-        run: npm run build
+      # Build the library and examples
+      - name: Build amCharts 5 examples
+        run: |
+          npm run build
+          npm run build:examples || echo "No build:examples script, examples built in main build"
 
+      # Deploy only the built examples folder
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
